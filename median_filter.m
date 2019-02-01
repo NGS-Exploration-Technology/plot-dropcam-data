@@ -6,8 +6,15 @@ function [filtered] = median_filter(samples, median_size)
 %   size = size of median filter
 %outputs
 %   filtered = output vector
+%
+%   Eric Berkenpas
+%   National Geographic Society
+%   2/1/2019
 
 index = 1;
+
+sample_length = length(samples);
+filtered = zeros(1,sample_length);
 
 while(index<(length(samples)-median_size))
     median_vector = samples(index:index+median_size-1);

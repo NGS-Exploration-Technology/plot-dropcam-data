@@ -11,7 +11,12 @@ function [Bottom_Depth, time, Depth, Temperature, Offset] = plot_dropcam_data(fi
 %   Depth = [m] depth vector
 %   Temperature = [C] ambient temperature
 %   Offset = Estimated Depth Offset (for zeroing surface pressure)
-%See also PRESSURE_TO_DEPTH
+%
+%   Eric Berkenpas 
+%   National Geographic Society
+%   2/1/2019
+%
+%See also PRESSURE_TO_DEPTH MEDIAN_FILTER
 
 %Check if Latitude supplied as parameter
 if (~exist('Latitude','var'))
@@ -92,7 +97,8 @@ ylabel('[C]');
 %Plot temperature depth profile
 figure;
 title('Temperature vs. Depth');
-plot(Depth(Diving_indices),Temperature(Diving_indices), '.k');
+plot(Temperature(Diving_indices), Depth(Diving_indices), '.k');
+set(gca,'Ydir','reverse')
 grid on;
-xlabel('Depth [m]');
-ylabel('Temperature [C]');
+xlabel('Temperature [C]');
+ylabel('Depth [m]');
